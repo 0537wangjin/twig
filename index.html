@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn">
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Twig中文手册 - Twig中文网</title>
 <meta name="keywords" content="Twig中文手册,Twig模版引擎,Twig中文网,Twig官方手册,Twig模版语言入门"/>
 <meta name="description" content="Twig是一个快速、安全、灵活的PHP模板引擎" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai.min.css" rel="stylesheet">
 <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai.min.css" rel="stylesheet">
 <link href="./asset/css/common.css" rel="stylesheet">
 <!-- <link href="http://cdn.bootcss.com/github-markdown-css/2.4.1/github-markdown.css" rel="stylesheet"> -->
@@ -21,10 +23,32 @@
   <a class="btn btn-default">入门指南</a>
   <a class="btn btn-default">安装下载</a>
   <a href="http://twig.sensiolabs.org/" target="_blank" class="btn btn-default">英文官网</a>
+  <a href="https://github.com/twigphp/Twig" target="_blank" class="btn btn-default">Git</a>
 </div>
 </center>
-<h1>可用符号</h1>
+<hr>
+<blockquote>
+  <p>Twig是功能最全面的现代PHP模板引擎之一，也是最快速的引擎之一。Twig将模板编译为纯粹的优化PHP代码，因此系统开销很小。其特性是原生模板继承，在其中将模板编译为类；在编译过程中完成自动转义，并且有一种安全的沙盒模式。所有这些特性为Twig提供了良好的扩展性。灵活的词法分析程序和分析器让开发人员能够定义自己的标记、过滤器等。</p>
+</blockquote>
 
+<h4><span class="glyphicon glyphicon-fire"></span> 运行环境</h4>
+<pre>Twig至少需要PHP5.2.4来运行。</pre>
+<h4><span class="glyphicon glyphicon-circle-arrow-down"></span> 安装</h4>
+<p>建议使用Composer安装，详细步骤请点击 <a href=""><ins>安装下载</ins></a></p>
+<pre><code class="language-bash hljs">composer require "twig/twig:~1.0"</code></pre>
+
+<h4><span class="glyphicon glyphicon-screenshot"></span> 基本用法</h4>
+<pre>
+<code class="language-php hljs">require_once '/path/to/vendor/autoload.php';
+ 
+$loader = new Twig_Loader_String();
+$twig = new Twig_Environment($loader);
+ 
+echo $twig->render('Hello {{ name }}!', array('name' => 'Fabien'));</code></pre>
+
+
+<h4><span class="glyphicon glyphicon-info-sign"></span> 可用符号</h4>
+<div class="well well-twig">
 <p>== != &lt; &gt; &gt;= &lt;= + - ~ * / // % ** | [] . .. and or not in is b-and b-or b-xor</p>
 
 <p>部分符号的含义如下</p>
@@ -36,13 +60,13 @@
 <li>b-and、b-or、b-xor：按位与、按位或、按位异或</li>
 <li>-：减法以及去除空白的简写用法，如 {{- 数据 }} =&gt; 去除左边的空白、{{ 数据 -}} =&gt; 去除右边的空白、{{- 数据 -}} =&gt; 去除两边的空白</li>
 </ul>
-
-<h1>注释</h1>
-
+</div>
+<h4><span class="glyphicon glyphicon-leaf"></span> 注释</h4>
+<div class="well well-twig">
 <p><code>{# This is Twig Comment #}</code></p>
-
-<h1>变量</h1>
-
+</div>
+<h4><span class="glyphicon glyphicon-paperclip"></span> 变量</h4>
+<div class="well well-twig">
 <p>foo 为PHP赋值变量， 则模版中可以使用 <code>{{ foo }}</code>。如果该变量为数组或者对象，则可以使用<code>{{ foo.bar }}</code>来表示，也可以直接调用类中的方法，如 <code>{{ foo.getName }}</code>或当有参数传递时使用 <code>{{ foo.getName(p1, p2, p3) }}</code></p>
 
 <p>当模版中使用{{ foo.bar }}时，PHP会做如下判断来检测对应变量的值：</p>
@@ -64,14 +88,14 @@
 <p>可使用 <code>{% set 变量名=变量值 %}</code> 声明变量，也可写成 <code>{% set 变量名 %}</code> 变量值 <code>{% endset %}</code></p>
 
 <p>PHP 中非关联数组被映射成 <code>[元素1, 元素2, ...]</code>，关联数组则被映射成 <code>{键1: 值1, 键2: 值2, ...}</code></p>
-
-<h1>数组遍历</h1>
-
+</div>
+<h4><span class="glyphicon glyphicon-dashboard"></span> 数组遍历</h4>
+<div class="well well-twig">
 <ol>
 <li>按数组value遍历：</li>
 </ol>
 
-<pre><code>{% for value in foo %}
+<pre><code class="language-php hljs">{% for value in foo %}
     {{ value }}
 {% endfor %}
 </code></pre>
@@ -80,7 +104,7 @@
 <li>按数组key遍历：</li>
 </ol>
 
-<pre><code>{% for key in foo|keys %}
+<pre><code class="language-php hljs">{% for key in foo|keys %}
     {{ key }}
 {% endfor %}
 </code></pre>
@@ -89,7 +113,7 @@
 <li>按key，value遍历</li>
 </ol>
 
-<pre><code>{% for key, value in foo %}
+<pre><code class="language-php hljs">{% for key, value in foo %}
     {{ key}}:{{value }}
 {% endfor %}
 </code></pre>
@@ -98,7 +122,7 @@
 <li>如果 foo 非数组，还可以使用else语句，如：</li>
 </ol>
 
-<pre><code>{% for key, value in foo %}
+<pre><code class="language-php hljs">{% for key, value in foo %}
     {{ key}}:{{value }}
 {% else %}  
     foo is Not a Array
@@ -109,7 +133,7 @@
 <li>也可以直接带条件，遍历二维数组时比较有用，可用value.field来判断：</li>
 </ol>
 
-<pre><code>{% for key, value in foo if value == 1%}
+<pre><code class="language-php hljs">{% for key, value in foo if value == 1%}
     {{ key}}:{{value }}
 {% endfor %}
 </code></pre>
@@ -126,14 +150,14 @@
 <li>loop.length   循环的总数</li>
 <li>loop.parent   被循环的数组</li>
 </ul>
-
-<p><strong>条件语句</strong></p>
-
+</div>
+<h4><span class="glyphicon glyphicon-tower"></span> 条件语句</h4>
+<div class="well well-twig">
 <ol>
 <li>需要使用 or 和 and 代替 ||、&amp;&amp;</li>
 </ol>
 
-<pre><code>{% if a == '1' or b == '2' %}
+<pre><code class="language-php hljs">{% if a == '1' or b == '2' %}
 a = 1 or b = 2
 {% endif %}
 </code></pre>
@@ -142,7 +166,7 @@ a = 1 or b = 2
 <li>判断变量是否定义</li>
 </ol>
 
-<pre><code>{% if var is not defined %}
+<pre><code class="language-php hljs">{% if var is not defined %}
     {# do something #}
 {% endif %}
 </code></pre>
@@ -151,7 +175,7 @@ a = 1 or b = 2
 <li>是否为NULL</li>
 </ol>
 
-<pre><code>{% if var is null %}
+<pre><code class="language-php hljs">{% if var is null %}
     {# do something #}
 {% endif %}
 </code></pre>
@@ -160,7 +184,7 @@ a = 1 or b = 2
 <li>是否为false</li>
 </ol>
 
-<pre><code>{% if var is sameas(false) %}
+<pre><code class="language-php hljs">{% if var is sameas(false) %}
     {# do something %}
 {% endif %}
 </code></pre>
@@ -169,7 +193,7 @@ a = 1 or b = 2
 <li>解析定界符</li>
 </ol>
 
-<pre><code>{{ '{{' }}
+<pre><code class="language-php hljs">{{ '{{' }}
  
 {% raw %}
     &lt;ul&gt;
@@ -179,9 +203,9 @@ a = 1 or b = 2
     &lt;/ul&gt;
 {% endraw %}
 </code></pre>
-
-<h1>控制结构</h1>
-
+</div>
+<h4><span class="glyphicon glyphicon-globe"></span> 控制结构</h4>
+<div class="well well-twig">
 <ul>
 <li>{% if aaa %} xxx {% elseif bbb %} yyy {% else %} zzz：判断语句</li>
 <li>{% for %} xxx {% endfor %}：迭代变量</li>
@@ -201,12 +225,12 @@ a = 1 or b = 2
 <li>{% autoescape %} xxx {% endautoescape %}：将字符串安全地处理成合法的指定数据</li>
 <li>{% verbatim %} xxx {% endverbatim %}：阻止模板引擎的编译，是 raw 的新名字</li>
 </ul>
-
-<h1>内建过滤器</h1>
-
+</div>
+<h4><span class="glyphicon glyphicon-gbp"></span> 内建过滤器</h4>
+<div class="well well-twig">
 <p>过滤器用来修饰数据，各过滤器可以用竖线分隔进行链式调用，用括号传递参数。也可以将过滤器当成单独的函数来用，形式如下：</p>
 
-<pre><code>{% filter 过滤器名 %}
+<pre><code class="language-php hljs">{% filter 过滤器名 %}
 待处理的数据
 {% endfilter %}
 </code></pre>
@@ -221,9 +245,9 @@ a = 1 or b = 2
 <li>replace：替换一个字符串中的指定内容。如 {{ &lsquo;%s1 love %s2&rsquo;|replace({&lsquo;%s1&rsquo;: &lsquo;Ruchee&rsquo;, &lsquo;%s2&rsquo;: &lsquo;Vim&rsquo;}) }} =&gt; &lsquo;Ruchee love Vim&rsquo;</li>
 <li>raw：让数据在 autoescape 过滤器里失效</li>
 </ul>
-
-<h1>借用自PHP自带函数的过滤器</h1>
-
+</div>
+<h4><span class="glyphicon glyphicon-unchecked"></span> 借用自PHP自带函数的过滤器</h4>
+<div class="well well-twig">
 <ul>
 <li>abs：取绝对值</li>
 <li>nl2br：将字符串里的 <code>\n</code> 替换成 <code>&lt;br/&gt;</code></li>
@@ -248,9 +272,9 @@ a = 1 or b = 2
 <li>number_format：格式化数值，等同于 number_format</li>
 <li>convert_encoding：编码转换，第一个参数指定转换后的编码，第二个参数指定转换前的编码，近似于 iconv</li>
 </ul>
-
-<h1>内建函数</h1>
-
+</div>
+<h4><span class="glyphicon glyphicon-adjust"></span> 内建函数</h4>
+<div class="well well-twig">
 <ul>
 <li>even：是否为偶数</li>
 <li>odd：是否为奇数</li>
@@ -272,6 +296,11 @@ a = 1 or b = 2
 <li>range：返回一个指定区间的数组，可指定步长，Twig 使用 .. 作为其简用法，等同于 range</li>
 <li>template_from_string：根据字符串加载模板</li>
 </ul>
+</div>
+<hr>
+<div class="copyright">
+本站以学习交流为目的，使用Twig制作，<a href="https://github.com/0537wangjin/twig" target="_blank"><span class="glyphicon glyphicon-link"></span>源码开放在Github</a>，站长QQ：445899710
+</h3>
 <p style="display:none;">
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261009584'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1261009584' type='text/javascript'%3E%3C/script%3E"));</script>
 </p>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twig中文手册 - Twig中文网</title>
+<meta name="keywords" content="Twig中文手册,Twig模版引擎,Twig中文网,Twig官方手册,Twig模版语言入门"/>
+<meta name="description" content="Twig是一个快速、安全、灵活的PHP模板引擎" />
+<link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai.min.css" rel="stylesheet">
+<link href="./asset/css/common.css" rel="stylesheet">
+<!-- <link href="http://cdn.bootcss.com/github-markdown-css/2.4.1/github-markdown.css" rel="stylesheet"> -->
+</head>
+<body>
+<center>
+<h1>Twig</h1>
+<h3>一个快速、安全、灵活的PHP模板引擎</h3>
+<div class="btn-group">
+    <a class="btn btn-default">中文文档</a>
+    <a class="btn btn-default">入门指南</a>
+    <a class="btn btn-default">安装下载</a>
+    <a href="http://twig.sensiolabs.org/" target="_blank" class="btn btn-default">英文官网</a>
+    <a href="https://github.com/twigphp/Twig" target="_blank" class="btn btn-default">Git</a>
+</div>
+</center>
+<hr>
+{% block content %}
+{% endblock %}
+{% block script %} {% endblock %}
+{{ include('footer.html') }}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<blockquote>
+  <p>Twig是功能最全面的现代PHP模板引擎之一，也是最快速的引擎之一。Twig将模板编译为纯粹的优化PHP代码，因此系统开销很小。其特性是原生模板继承，在其中将模板编译为类；在编译过程中完成自动转义，并且有一种安全的沙盒模式。所有这些特性为Twig提供了良好的扩展性。灵活的词法分析程序和分析器让开发人员能够定义自己的标记、过滤器等。</p>
+</blockquote>
+
+<h4><span class="glyphicon glyphicon-fire"></span> 运行环境</h4>
+<pre>Twig至少需要PHP5.2.4来运行。</pre>
+<h4><span class="glyphicon glyphicon-circle-arrow-down"></span> 安装</h4>
+<p>建议使用Composer安装，详细步骤请点击 <a href=""><ins>安装下载</ins></a></p>
+<pre><code class="language-bash hljs">composer require "twig/twig:~1.0"</code></pre>
+
+<h4><span class="glyphicon glyphicon-screenshot"></span> 基本用法</h4>
+<pre>
+<code class="language-php hljs">require_once dirname(__FILE__) . '/vendor/autoload.php';
+ 
+$loader = new Twig_Loader_String();
+$twig = new Twig_Environment($loader);
+
+echo $twig->render('Hello {{ name }}!', array('name' => 'Fabien'));</code></pre>
+<p>
+Twig使用一个加载器（Twig_Loader_String）来定位模板，和一个环境（Twig_Environment）来存储配置信息。 render() 方法通过传递过来的第一个参数来加载模板，通过传递过来的第二个参数（也就是变量）来渲染它。作为模板通常存储在文件系统中，Twig还配备了一个文件系统加载器：
+</p>
+<pre>
+<code class="language-php hljs">require_once dirname(__FILE__) . '/vendor/autoload.php';
+
+$loader = new Twig_Loader_Filesystem('./views');
+$twig = new Twig_Environment($loader, array(
+    /* 'cache' => './compilation_cache', */
+));
+ 
+echo $twig->render('layout.html', array('name' => 'Fabien'));</code></pre>
+<p>
+如果你不使用Composer，你可以使用Twig内置的自动加载器：
+</p>
+<pre>
+<code class="language-php hljs">require_once dirname(__FILE__) . '/vendor/twig/twig/lib/Twig/Autoloader.php';
+Twig_Autoloader::register();</code></pre>
+{% endblock %}
