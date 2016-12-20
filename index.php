@@ -1,6 +1,8 @@
 <?php
 require_once dirname(__FILE__) . '/vendor/autoload.php';
- 
+
+$page = 'index';
+
 /* $loader = new Twig_Loader_String();
 $twig = new Twig_Environment($loader);
  
@@ -10,4 +12,4 @@ $twig = new Twig_Environment($loader, array(
     /* 'cache' => './compilation_cache', */
 ));
  
-echo $twig->render('index.html');
+echo $twig->render('index.html', array('page' => $page));

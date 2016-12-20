@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h4><span class="glyphicon glyphicon-fire"></span> 运行环境</h4>
+<pre>Twig至少需要PHP5.2.4来运行。</pre>
+<h4><span class="glyphicon glyphicon-book"></span> 使用Composer安装</h4>
+<p>先创建一个 composer.json <a href="./composer.json" target="_blank"><ins>下载</ins></a></p>
+<pre><code class="language-bash hljs">{
+    "require": {
+        "twig/twig": "1.29.0",
+        "php": ">=5.2.7"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}</code></pre>
+
+<h4><span class="glyphicon glyphicon-screenshot"></span> 基本用法</h4>
+<pre>
+<code class="language-php hljs">require_once dirname(__FILE__) . '/vendor/autoload.php';
+ 
+$loader = new Twig_Loader_String();
+$twig = new Twig_Environment($loader);
+
+echo $twig->render('Hello {{ name }}!', array('name' => 'Fabien'));</code></pre>
+<p>
+Twig使用一个加载器（Twig_Loader_String）来定位模板，和一个环境（Twig_Environment）来存储配置信息。 render() 方法通过传递过来的第一个参数来加载模板，通过传递过来的第二个参数（也就是变量）来渲染它。作为模板通常存储在文件系统中，Twig还配备了一个文件系统加载器：
+</p>
+<pre>
+<code class="language-php hljs">require_once dirname(__FILE__) . '/vendor/autoload.php';
+
+$loader = new Twig_Loader_Filesystem('./views');
+$twig = new Twig_Environment($loader, array(
+    /* 'cache' => './compilation_cache', */
+));
+ 
+echo $twig->render('layout.html', array('name' => 'Fabien'));</code></pre>
+<p>
+如果你不使用Composer，你可以使用Twig内置的自动加载器：
+</p>
+<pre>
+<code class="language-php hljs">require_once dirname(__FILE__) . '/vendor/twig/twig/lib/Twig/Autoloader.php';
+Twig_Autoloader::register();</code></pre>
+{% endblock %}
