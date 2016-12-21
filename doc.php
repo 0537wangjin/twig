@@ -2,7 +2,7 @@
 require_once dirname(__FILE__) . '/vendor/autoload.php';
 
 $page = 'doc';
-$pagetitle = '入门指南';
+$pagetitle = '入门指南 ';
 
 $loader = new Twig_Loader_Filesystem('./views');
 $twig = new Twig_Environment($loader, array(
