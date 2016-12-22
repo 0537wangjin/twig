@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-9 col-md-push-3">
+    <h4><span class="glyphicon glyphicon-link"></span> with</h4>
+<p>使用with创建一个内部作用域，值在范围之外不变：</p>
+
+
+{% verbatim %}
+<pre>
+<code class="language-php hljs">{% set foo = 99 %}
+>>头部foo的值是 {{ foo }}<<
+{% with %}
+    {% set foo = 42 %}
+    foo is {{ foo }} here
+{% endwith %}
+>>尾部foo的值是 {{ foo }}<<</code></pre>
+{% endverbatim %}
+<p>输出结果： >>头部foo的值是<code>99</code><< foo is <code>42</code> here >>尾部foo的值是<code>99</code><<</p>
+
+
+  </div>
+  <div class="col-md-3 col-md-pull-9">
+    {% include 'tagsmenu.html' %}
+  </div>
+</div>
+
+
+{% endblock %}

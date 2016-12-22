@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-9 col-md-push-3">
+    <h4><span class="glyphicon glyphicon-link"></span> autoescape 使用自动转义工作</h4>
+<p>无论自动转义启用与否，你都可以使用 autoescape 标签来标记模板的一部分进行转义或不转义：</p>
+<!-- autoscape -->
+{% verbatim %}
+<pre>
+<code class="language-php hljs">{% autoescape %}
+    Everything will be automatically escaped in this block (using the HTML strategy)
+{% endautoescape %}</code></pre>
+{% endverbatim %}
+<p>默认情况下，自动转义使用HTML转义的策略。如果您在其他情况下输出变量，你需要明确地使用适当的转义策略来转义他们：</p>
+
+{% verbatim %}
+<pre>
+<code class="language-php hljs">{% autoescape 'js' %}
+    Everything will be automatically escaped in this block (using the JS strategy)
+{% endautoescape %}</code></pre>
+{% endverbatim %}
+  </div>
+  <div class="col-md-3 col-md-pull-9">
+    {% include 'tagsmenu.html' %}
+  </div>
+</div>
+
+
+{% endblock %}

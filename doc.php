@@ -5,8 +5,6 @@ $page = 'doc';
 $pagetitle = '入门指南 ';
 
 $loader = new Twig_Loader_Filesystem('./views');
-$twig = new Twig_Environment($loader, array(
-    /* 'cache' => './compilation_cache', */
-));
+$twig = new Twig_Environment($loader);
  
 echo $twig->render('doc.html', array('page' => $page, 'pagetitle' => $pagetitle));

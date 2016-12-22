@@ -1,6 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="row">
+  <div class="col-xs-6">
+<strong>Tags</strong>
+        <ul>
+          <li><a href="./tags.php?tag=autoescape">autoescape</a></li>
+          <li><a href="./tags.php?tag=with">with</a></li>
+          <li><a href="./tags.php?tag=block">block</a></li>
+          <li><a href="./tags.php?tag=do">do</a></li>
+          <li><a href="./tags.php?tag=embed">embed</a></li>
+          <li><a href="./tags.php?tag=extends">extends</a></li>
+          <li><a href="./tags.php?tag=filter">filter</a></li>
+          <li><a href="./tags.php?tag=flush">flush</a></li>
+          <li><a href="./tags.php?tag=for">for</a></li>
+          <li><a href="./tags.php?tag=form">form</a></li>
+          <li><a href="./tags.php?tag=if">if</a></li>
+          <li><a href="./tags.php?tag=import">import</a></li>
+          <li><a href="./tags.php?tag=include">include</a></li>
+          <li><a href="./tags.php?tag=macro">macro</a></li>
+          <li><a href="./tags.php?tag=sandbox">sandbox</a></li>
+          <li><a href="./tags.php?tag=set">set</a></li>
+          <li><a href="./tags.php?tag=spaceless">spaceless</a></li>
+          <li><a href="./tags.php?tag=use">use</a></li>
+          <li><a href="./tags.php?tag=verbatim">verbatim</a></li>
+        </ul>
+  </div>
+  <div class="col-xs-6">
+  <strong>Filters</strong>
+        <ul>
+          <li>abs</li>
+          <li>batch</li>
+          <li>capitalize</li>
+          <li>convert_encoding</li>
+          <li>date</li>
+          <li>date_modify</li>
+          <li>default</li>
+          <li>escape</li>
+          <li>first</li>
+          <li>format</li>
+          <li>join</li>
+          <li>json_encode</li>
+          <li>keys</li>
+          <li>last</li>
+          <li>length</li>
+          <li>lower</li>
+          <li>merge</li>
+          <li>nl2br</li>
+          <li>number_format</li>
+          <li>raw</li>
+          <li>replace</li>
+          <li>reverse</li>
+          <li>round</li>
+          <li>slice</li>
+          <li>sort</li>
+          <li>split</li>
+          <li>striptags</li>
+          <li>title</li>
+          <li>trim</li>
+          <li>upper</li>
+          <li>url_encode</li>
+        </ul>
+  </div>
+</div>
 <h4><span class="glyphicon glyphicon-info-sign"></span> 可用符号</h4>
 <div class="well well-twig">
 <p>== != &lt; &gt; &gt;= &lt;= + - ~ * / // % ** | [] . .. and or not in is b-and b-or b-xor</p>
@@ -48,50 +109,50 @@
 <ol>
 <li>按数组value遍历：</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % for value in foo % }
+{% verbatim %}
+<pre><code class="language-php hljs">{% for value in foo %}
     { { value }}
-{ % endfor % }
+{% endfor %}
 </code></pre>
-
+{% endverbatim %}
 <ol>
 <li>按数组key遍历：</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % for key in foo|keys % }
-    { { key }}
-{ % endfor % }
+{% verbatim %}
+<pre><code class="language-php hljs">{% for key in foo|keys %}
+    {{ key }}
+{% endfor %}
 </code></pre>
-
+{% endverbatim %}
 <ol>
 <li>按key，value遍历</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % for key, value in foo % }
-    { { key}}:{ {value }}
-{ % endfor % }
+{% verbatim %}
+<pre><code class="language-php hljs">{% for key, value in foo %}
+    {{ key }}:{{ value }}
+{% endfor %}
 </code></pre>
-
+{% endverbatim%}
 <ol>
 <li>如果 foo 非数组，还可以使用else语句，如：</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % for key, value in foo % }
-    { { key}}:{ {value }}
-{ % else % }  
+{% verbatim %}
+<pre><code class="language-php hljs">{% for key, value in foo %}
+    {{ key }}:{{ value }}
+{% else %}  
     foo is Not a Array
-{ % endfor % }
+{% endfor %}
 </code></pre>
-
+{% endverbatim %}
 <ol>
 <li>也可以直接带条件，遍历二维数组时比较有用，可用value.field来判断：</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % for key, value in foo if value == 1% }
-    { { key}}:{ {value }}
-{ % endfor % }
+{% verbatim %}
+<pre><code class="language-php hljs">{% for key, value in foo if value == 1 %}
+    {{ key }}:{{ value }}
+{% endfor %}
 </code></pre>
-
+{% endverbatim %}
 <p>循环体内部变量：</p>
 
 <ul>
@@ -110,75 +171,78 @@
 <ol>
 <li>需要使用 or 和 and 代替 ||、&amp;&amp;</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % if a == '1' or b == '2' % }
+{% verbatim %}
+<pre><code class="language-php hljs">{% if a == '1' or b == '2' %}
 a = 1 or b = 2
-{ % endif % }
+{% endif %}
 </code></pre>
-
+{% endverbatim %}
 <ol>
 <li>判断变量是否定义</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % if var is not defined % }
+{% verbatim %}
+<pre><code class="language-php hljs">{% if var is not defined %}
     do something
-{ % endif % }
+{% endif %}
 </code></pre>
-
+{% endverbatim %}
 <ol>
 <li>是否为NULL</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % if var is null % }
+{% verbatim %}
+<pre><code class="language-php hljs">{% if var is null %}
     do something
-{ % endif % }
+{% endif %}
 </code></pre>
-
+{% endverbatim %}
 <ol>
 <li>是否为false</li>
 </ol>
-
-<pre><code class="language-php hljs">{ % if var is sameas(false) % }
+{% verbatim %}
+<pre><code class="language-php hljs">{% if var is sameas(false) %}
     do something
-{ % endif % }
+{% endif %}
 </code></pre>
-
+{% endverbatim %}
 <ol>
 <li>解析定界符</li>
 </ol>
-
-<pre><code class="language-php hljs">{ { '{ {' }}
+{% verbatim %}
+<pre><code class="language-php hljs">{{ '{{' }}
  
-{ % raw % }
+{% raw %}
     &lt;ul&gt;
-    { % for item in seq % }
+    {% for item in seq %}
         &lt;li&gt;{ { item }}&lt;/li&gt;
-    { % endfor % }
+    {% endfor %}
     &lt;/ul&gt;
-{ % endraw % }
+{% endraw %}
 </code></pre>
+{% endverbatim %}
 </div>
 <h4><span class="glyphicon glyphicon-globe"></span> 控制结构</h4>
 <div class="well well-twig">
+{% verbatim %}
 <ul>
-<li>{ % if aaa % } xxx { % elseif bbb % } yyy { % else % } zzz：判断语句</li>
-<li>{ % for % } xxx { % endfor % }：迭代变量</li>
-<li>{ % do % }：没什么其他含义，{ % do 1+2 % } 等同于 { { 1+2 }}</li>
-<li>{ % flush % }：刷新输出缓冲，等同于 flush</li>
-<li>{ % include % }：包含模板</li>
-<li>{ % extends % }：扩展模板</li>
-<li>{ % embed % } xxx { % endembed % }：包含模板并扩展该模板的内容，相当于 include 和 extends 的结合体</li>
-<li>{ % use % }：包含模板，近似于多重继承</li>
-<li>{ % from aaa import bbb as ccc % }：从指定模板导入宏并设置别名</li>
-<li>{ % macro % } xxx { % endmacro % }：定义宏以便多次调用，与定义 PHP 函数无异</li>
-<li>{ % sandbox % } { % include xxx % } { % endsandbox % }：对导入的模板指定沙箱模式，只对 include 语句有效，只在沙箱模式已开启的情况下生效</li>
-<li>{ % block xxx % } 或 { % block % } xxx { % endblock % }：定义代码块或覆盖代码块</li>
-<li>{ % set xxx % } 或 { % set % } xxx { % endset % }：在模板内定义变量</li>
-<li>{ % filter % } xxx { % endfilter % }：多行过滤器</li>
-<li>{ % spaceless % } xxx { % endspaceless % }：去除 HTML 片段中的空格</li>
-<li>{ % autoescape % } xxx { % endautoescape % }：将字符串安全地处理成合法的指定数据</li>
+<li>{% if aaa %} xxx {% elseif bbb %} yyy {% else %} zzz：判断语句</li>
+<li>{% for %} xxx {% endfor %}：迭代变量</li>
+<li>{% do %}：没什么其他含义，{% do 1+2 %} 等同于 { { 1+2 }}</li>
+<li>{% flush %}：刷新输出缓冲，等同于 flush</li>
+<li>{% include %}：包含模板</li>
+<li>{% extends %}：扩展模板</li>
+<li>{% embed %} xxx {% endembed %}：包含模板并扩展该模板的内容，相当于 include 和 extends 的结合体</li>
+<li>{% use %}：包含模板，近似于多重继承</li>
+<li>{% from aaa import bbb as ccc %}：从指定模板导入宏并设置别名</li>
+<li>{% macro %} xxx {% endmacro %}：定义宏以便多次调用，与定义 PHP 函数无异</li>
+<li>{% sandbox %} {% include xxx %} {% endsandbox %}：对导入的模板指定沙箱模式，只对 include 语句有效，只在沙箱模式已开启的情况下生效</li>
+<li>{% block xxx %} 或 {% block %} xxx {% endblock %}：定义代码块或覆盖代码块</li>
+<li>{% set xxx %} 或 {% set %} xxx {% endset %}：在模板内定义变量</li>
+<li>{% filter %} xxx {% endfilter %}：多行过滤器</li>
+<li>{% spaceless %} xxx {% endspaceless %}：去除 HTML 片段中的空格</li>
+<li>{% autoescape %} xxx {% endautoescape %}：将字符串安全地处理成合法的指定数据</li>
 <li>{ % verbatim % } xxx { % endverbatim % }：阻止模板引擎的编译，是 raw 的新名字</li>
 </ul>
+{% endverbatim %}
 </div>
 <h4><span class="glyphicon glyphicon-gbp"></span> 内建过滤器</h4>
 <div class="well well-twig">

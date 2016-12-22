@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-9 col-md-push-3">
+    <h4><span class="glyphicon glyphicon-link"></span> do</h4>
+
+
+{% verbatim %}
+<p>The do tag works exactly like the regular variable expression ({{ ... }}) just that it doesn't print anything:</p>
+<pre>
+<code class="language-php hljs">{% do 1 + 2 %}</code></pre>
+{% endverbatim %}
+
+
+
+  </div>
+  <div class="col-md-3 col-md-pull-9">
+    {% include 'tagsmenu.html' %}
+  </div>
+</div>
+
+
+{% endblock %}
